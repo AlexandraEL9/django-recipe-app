@@ -24,12 +24,13 @@ if os.path.exists('env.py'):
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
+SECRET_KEY = 'lp+y=bp@%oo6s1n93xa0(f)oxg$xq8l8w1*lki7&b2qnl6lo)-'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'Development' in os.environ
+DEBUG = True
 
-ALLOWED_HOSTS = ['8000-alexandrael-djangorecip-l73ra9rh5cc.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-alexandrael-djangorecip-ycx6nvnm0y7.ws.codeinstitute-ide.net', '127.0.0.1', 'localhost']
+
+
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,9 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
