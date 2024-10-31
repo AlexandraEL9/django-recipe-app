@@ -53,13 +53,40 @@ INSTALLED_APPS = [
 
     # Apps
     'home',
+    'recipes',
 
     # Other
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'django_ckeditor_5',  # Add this line
+    'cloudinary',
+    'cloudinary_storage'
+
 ]
 
 SITE_ID = 1
+
+# for rich text field
+CCKEDITOR_5_CONFIGS = {
+    'default': {
+        'type': 'classic',  # Can be 'classic', 'inline', 'balloon', or 'balloon-block'
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'underline', '|', 
+            'bulletedList', 'numberedList', '|', 
+            'undo', 'redo', '|', 'maximize'
+        ],
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2'},
+                {'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3'},
+            ]
+        },
+        'removePlugins': 'resize',  # Optional: Customize by removing plugins if needed
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,7 +101,6 @@ MIDDLEWARE = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
-    
 
 ROOT_URLCONF = 'main.urls'
 
@@ -170,6 +196,14 @@ LOGIN_REDIRECT_URL = '/'
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+# Cloudinary Settings
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUIDNARY_URL = os.environ.get('CLOUDINARY_URL')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
